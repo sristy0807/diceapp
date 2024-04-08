@@ -3,6 +3,10 @@
 
 import 'package:flutter/material.dart';
 
+
+var startAlignment = Alignment.topCenter;
+var endAlignment = Alignment.bottomCenter;
+
 class GradientContainer extends StatelessWidget{
 
   const GradientContainer({super.key, required this.color1, required this.color2, });
@@ -20,7 +24,33 @@ class GradientContainer extends StatelessWidget{
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return Container(
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [color1,color2],
+          begin: startAlignment,
+          end: endAlignment,
+        )
+      ),
+      child: Center(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+            'aa/dice.png',
+            width: 200,
+          ),
+          const SizedBox(
+            height: 30,
+          ),
+          ElevatedButton(
+            onPressed: roleTheDice, 
+            child: const CustomText('Roll Dice', textColor: Colors.indigo),
+            ),
+        ],
+        ) 
+      ),
+    );
   }
 
 }
@@ -36,7 +66,7 @@ class CustomText extends StatelessWidget{
     return Text(text, style: 
     TextStyle(
               color: textColor, 
-              fontSize: 30
+              fontSize: 25,
               )
     );
   }
